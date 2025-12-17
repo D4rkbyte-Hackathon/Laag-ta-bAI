@@ -1,60 +1,126 @@
-# LaagAIde 🏛️📱
+# Laag ta bAI
 
-An AI-powered mobile app revolutionizing heritage tourism in Cebu. By combining image recognition with localized storytelling, it acts as a personal pocket tour guide. It bridges the gap between seeing a landmark and truly understanding its history, making heritage appreciation accessible, engaging, and fun for everyone.
+> **"Discover Cebu's Heritage. One Photo at a Time."**
 
-## 📖 About
+**Laag ta bAI** is an AI-powered mobile travel companion that turns your smartphone into an intelligent local guide.
 
-LaagAIde is a React Native mobile application designed to enhance the tourism experience in Cebu, Philippines. The app allows users to:
+The name is a play on the Cebuano phrase **"Laag ta"** (Let's go explore) combined with **"bai"** (friend/companion) and **"AI"**. It is designed to bridge the gap between seeing a landmark and truly understanding its story.
 
-- **Explore** - Discover nearby landmarks and popular heritage sites on an interactive map
-- **Scan** - Use your camera to scan landmarks and get AI-powered information about their history
-- **Archive** - Save your favorite places and view your exploration history
-- **Master** - Complete quests, earn badges, and track your exploration progress
-- **Profile** - Manage your account settings and preferences
+---
 
-## 🎨 Color Palette
+## The Problem
 
-| Color | Hex Code | Usage |
-|-------|----------|-------|
-| Primary Gold | `#E6A817` | Headers, active states, accents |
-| Background Dark | `#2B0E0E` → `#571717` | Dark gradient backgrounds |
-| Background Light | `#F5F0E8` | Light backgrounds, cards |
-| Secondary Red | `#C74634` | Buttons, alerts, highlights |
-| Main Green | `#4CAF50` | Success states, progress |
+While Cebu is rich in history, tourism often feels disconnected.
+* **Static Signs:** Heritage signs are often boring, weathered, or hard to read.
+* **Lack of Guides:** Human guides are excellent but can be expensive or unavailable for solo travelers.
+* **Arrival Chaos:** Tourists often arrive at Mactan-Cebu International Airport (MCIA) feeling confused and unguided.
 
-## 📦 Installation
+## The Solution
 
-### Prerequisites
+**Laag ta bAI** democratizes access to historical knowledge using Generative AI and Computer Vision.
 
-- Node.js (v16 or higher)
-- npm or yarn
-- Expo Go app on your mobile device (for testing)
+### Key Features
 
-## 📱 Screens
+* **Scan-to-Story Technology**
+    Point your camera at a landmark (like Magellan's Cross). The app identifies the structure and narrates its history and significance instantly, replacing boring text plaques.
+* **AI Chat Guide (Powered by Gemini)**
+    Talk to our AI acting as a "local buddy". Ask open-ended questions like "Why is the statue pointing that way?" and get answers in a natural, conversational persona.
+* **Mactan Gateway Mode**
+    A dedicated mode for airport arrivals. It provides orientation guides and starter quests immediately upon landing at MCIA.
+* **Multilingual Support**
+    Breaks language barriers by offering translation in local dialects (Cebuano, Tagalog) and international languages like Korean and English.
+* **Mastery & Gamification**
+    Earn badges and complete quests (e.g., "Religious Explorer") to encourage visiting lesser-known heritage sites.
+
+---
+
+## How It Works
+
+The application follows a seamless two-step process:
+
+1.  **Visual Discovery:** The camera feed uses a custom **Computer Vision model** to identify the landmark.
+2.  **Generative Storytelling:** The system sends this data to the **Gemini API**, which generates fun facts and historical context.
+3.  **Interactive Chat:** Users can continue the conversation with the AI for deeper learning.
+
+---
+
+## App Screens
 
 | Screen | Description |
 |--------|-------------|
-| Loading | Splash screen with app logo |
-| Welcome | Introduction and onboarding |
-| Permission | Location/camera permission requests |
-| MactanGateway | Landing page for Mactan exploration |
-| Explore | Main map with nearby places and landmarks |
-| Archives | Saved favorites and exploration history |
-| Scan | Camera for scanning landmarks |
-| Mastery | Quests, badges, and gamification |
-| Profile | User settings and account management |
-| ExpandedMap | Full-screen interactive map view |
+| **Mactan Gateway** | Orientation and arrival guides at MCIA. |
+| **Explore** | Map view showing nearby landmarks and "Must-visit" sites. |
+| **Scan** | The core camera feature. Identify objects and generate stories. |
+| **Landmark Detail** | Displays history, facts, and the "Chat with AI Guide" button. |
+| **Mastery** | Tracks progress, active quests, and earned badges. |
+| **Profile** | User settings, language preferences, and traveler rank. |
 
-## 🚀 Features
+## Color Palette & Design
 
-- ✅ Interactive map exploration
-- ✅ Camera-based landmark scanning
-- ✅ Gamification with quests and badges
-- ✅ Favorites and history tracking
-- ✅ Beautiful UI with Cebu-inspired design
-- ✅ Bottom tab navigation
+The design reflects the warmth of Cebuano hospitality and heritage.
 
-## 👥 Team
+| Color | Hex Code | Usage |
+|-------|----------|-------|
+| **Primary Gold** | `#E6A817` | Headers, Branding, "Laag" accents |
+| **Dark Maroon** | `#2B0E0E` | Backgrounds, heavy contrast elements |
+| **Off-White** | `#F5F0E8` | Cards, readable text areas |
+| **Accent Red** | `#C74634` | Buttons, alerts |
 
-Built with ❤️ for **CEBIHACKS 2025**
+---
 
+## Installation
+
+### Prerequisites
+
+* Node.js (v16 or higher)
+* npm or yarn
+* Expo Go app on your mobile device
+
+### Steps
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/D4rkbyte-Hackathon/Laag-ta-bAI/edit/main/README.md
+    ```
+2.  Navigate to the project directory:
+    ```bash
+    cd laag-ta-bai
+    ```
+3.  Install dependencies:
+    ```bash
+    npm install
+    ```
+4.  Start the development server:
+    ```bash
+    npx expo start
+    ```
+
+---
+
+## Team D4rkbyte
+
+Built with ❤️ for **CEB-i Hacks 2025**.
+*Track: Tourism Experience*.
+
+**Cebu Institute of Technology - University**
+
+* **John Michael A. Nave**
+  
+  [![github](https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/GoldenSnek)
+  
+* **John Zachary N. Gillana**
+
+  [![github](https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jzekken)
+  
+* **John Peter D. Pestaño**
+
+  [![github](https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/FloatingDust36)
+  
+* **Jordan A. Cabandon**
+
+  [![github](https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/cabandonjordan)
+  
+* **James Andrew S. Ologuin**
+
+  [![github](https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/OJamesAndrew)
+  
