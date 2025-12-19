@@ -9,7 +9,7 @@ const WelcomeScreen = ({ navigation }: any) => {
       
       <TouchableOpacity 
         className="bg-green-600 py-4 px-10 rounded-lg"
-        onPress={() => navigation.replace('Explore')} // Goes to Home
+        onPress={() => navigation.replace('MainTabs')} // Goes to Home
       >
         <Text className="text-white font-bold text-lg">Enter App</Text>
       </TouchableOpacity>
