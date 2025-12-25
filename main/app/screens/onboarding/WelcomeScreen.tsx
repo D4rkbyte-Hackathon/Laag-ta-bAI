@@ -36,8 +36,8 @@ const GatewayOption = ({
       activeOpacity={0.7}
       className="flex-row items-center bg-white/10 border border-white/5 p-4 rounded-2xl mb-3"
     >
-      <View className="bg-primary-dark/20 w-12 h-12 rounded-full items-center justify-center mr-4">
-        <Ionicons name={icon} size={24} color="#FFC107" />
+      <View className="bg-secondary/20 w-12 h-12 rounded-full items-center justify-center mr-4">
+        <Ionicons name={icon} size={24} color="#FF5E3E" />
       </View>
       <View className="flex-1">
         <Text className="text-white font-bold text-base">{title}</Text>
@@ -78,7 +78,7 @@ const WelcomeScreen = ({ navigation }: Props) => {
               >
                   <View className="w-full aspect-square rounded-[40px] overflow-hidden border-4 border-white/20">
                        <Image 
-                          // Replace pic of MCIA or pwede sad vid sa diff places in cebu
+                          // Replace pic of MCIA or pwede sad vid/gif sa diff places in cebu
                           source={{ uri: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}
                           className="w-full h-full"
                           resizeMode="cover"
@@ -87,7 +87,7 @@ const WelcomeScreen = ({ navigation }: Props) => {
                   </View>
 
                   {/* Floating Icon Badge */}
-                  <View className="absolute -bottom-6 bg-primary-dark w-16 h-16 rounded-full items-center justify-center border-4 border-[#2B0E0E] shadow-xl">
+                  <View className="absolute -bottom-6 bg-secondary w-16 h-16 rounded-full items-center justify-center border-4 border-[#2B0E0E] shadow-xl">
                       <Ionicons name="airplane" size={32} color="#2B0E0E" />
                   </View>
               </Animated.View>

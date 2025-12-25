@@ -29,8 +29,8 @@ const PermissionItem = ({
     entering={FadeInDown.delay(delay).duration(600).springify()}
     className="flex-row items-center bg-white/10 rounded-2xl p-4 mb-4 border border-white/5"
   >
-    <View className="bg-primary-dark/20 p-3 rounded-full mr-4">
-      <Ionicons name={icon} size={24} color="#FFC107" />
+    <View className="bg-secondary/20 p-3 rounded-full mr-4">
+      <Ionicons name={icon} size={24} color="#FF5E3E" />
     </View>
     <View className="flex-1">
       <Text className="text-white text-lg font-bold mb-1">{title}</Text>
