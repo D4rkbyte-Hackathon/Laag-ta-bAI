@@ -71,8 +71,8 @@ export default function App() {
           <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
           
           {/* Sub-screens that should cover the tabs (Detailed Views) */}
-          <Stack.Screen name="FullMap" component={FullMapView} />
-          <Stack.Screen name="Transit" component={TransitInfo} />
+          <Stack.Screen name="FullMap" component={FullMapView} options={{ headerShown: false }}/>
+          <Stack.Screen name="TransitInfo" component={TransitInfo} options={{ headerShown: false }}/>
 
           {/* Scan Flow Details */}
           <Stack.Screen name="Identifying" component={IdentifyingModal} options={{ presentation: 'modal' }} />
