@@ -117,8 +117,8 @@ const ScanButton = ({ onPress, isFocused }: any) => {
   return (
     <Pressable
       onPress={onPress}
-      // lower mt if needed para mo naog ang scan button
-      className="items-center justify-center -mt-10"
+      // lower -mt-10 if needed para mo naog ang scan button
+      className="items-center justify-center -mt-8"
       style={{ zIndex: 10 }}
     >
       <AnimatedView 

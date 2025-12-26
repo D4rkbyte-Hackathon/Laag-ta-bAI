@@ -24,7 +24,7 @@ import ArchivesScreen from './app/screens/home/archives/ArchivesScreen';
 
 // --- IMPORTS: Scan ---
 import ScanScreen from './app/screens/home/scan/ScanScreen';
-import IdentifyingModal from './app/screens/home/scan/IdentifyingModal';
+import IdentifyingModal from './app/screens/home/scan/IdentifyingModal'; //no need
 import LandmarkDetails from './app/screens/home/scan/LandmarkDetails';
 import AIChatScreen from './app/screens/home/scan/AIChatScreen';
 
@@ -75,12 +75,11 @@ export default function App() {
           <Stack.Screen name="TransitInfo" component={TransitInfo} options={{ headerShown: false }}/>
 
           {/* Scan Flow Details */}
-          <Stack.Screen name="Identifying" component={IdentifyingModal} options={{ presentation: 'modal' }} />
-          <Stack.Screen name="LandmarkDetails" component={LandmarkDetails} />
-          <Stack.Screen name="AIChat" component={AIChatScreen} />
+          <Stack.Screen name="LandmarkDetails" component={LandmarkDetails} options={{ headerShown: false }}/>
+          <Stack.Screen name="AIChat" component={AIChatScreen} options={{ headerShown: false }}/>
 
           {/* Mastery Details */}
-          <Stack.Screen name="AchievementDetail" component={AchievementDetail} />
+          <Stack.Screen name="AchievementDetail" component={AchievementDetail} options={{ headerShown: false }}/>
 
         </Stack.Navigator>
       </NavigationContainer>
