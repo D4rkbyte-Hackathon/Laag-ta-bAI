@@ -49,7 +49,7 @@ const LandmarkDetails = ({ navigation }: Props) => {
       <TopNavbar 
           title="Landmark Details"
           onBack={() => navigation.goBack()}
-          rightIcon="heart"
+          rightIcon="heart-outline"
           onRightAction={() => navigation.navigate('MainTabs', { screen: 'Archives' })}
       />
 
@@ -91,7 +91,7 @@ const LandmarkDetails = ({ navigation }: Props) => {
                         className="flex-1 bg-primary-dark h-12 rounded-xl flex-row items-center justify-center shadow-lg shadow-yellow-500/20"
                     >
                         <Ionicons name="chatbubble-ellipses" size={20} color="#2B0E0E" />
-                        <Text className="text-background-dark font-bold text-base ml-2">Ask AI Guide</Text>
+                        <Text className="text-background-dark font-bold text-base ml-2">Ask bAI: The AI Guide</Text>
                     </TouchableOpacity>
 
                     {/* Text to Speech Button (UI Toggle Only) */}
