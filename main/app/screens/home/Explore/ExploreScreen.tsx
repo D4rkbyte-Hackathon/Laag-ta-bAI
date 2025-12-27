@@ -55,7 +55,7 @@ const ExploreScreen = ({ navigation }: Props) => {
     <GradientBackground>
       <SafeAreaView className="flex-1">
         <ScrollView 
-          contentContainerStyle={{ paddingBottom: 110 }} 
+          contentContainerStyle={{ paddingBottom: 80 }} 
           showsVerticalScrollIndicator={false}
           // Important: Helps prevent ScrollView from stealing map touches
           scrollEventThrottle={16}
@@ -177,7 +177,7 @@ const ExploreScreen = ({ navigation }: Props) => {
               {POPULAR_LANDMARKS.map((landmark) => (
                   <TouchableOpacity 
                       key={landmark.id}
-                      className="flex-row bg-white/10 border border-white/5 rounded-2xl p-3 mb-3 items-center"
+                      className="flex-row bg-white/5 border border-white/5 rounded-2xl p-3 mb-3 items-center"
                       activeOpacity={0.7}
                   >
                        <View className="w-20 h-20 rounded-xl mr-4 bg-white/5 p-2 items-center justify-center">

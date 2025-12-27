@@ -138,7 +138,7 @@ const ArchivesScreen = ({ navigation }: Props) => {
     <GradientBackground>
       <SafeAreaView className="flex-1">
         <ScrollView 
-            contentContainerStyle={{ paddingBottom: 110 }} 
+            contentContainerStyle={{ paddingBottom: 80 }} 
             showsVerticalScrollIndicator={false}
         >
           <View className="px-6 pt-4">
@@ -170,7 +170,7 @@ const ArchivesScreen = ({ navigation }: Props) => {
                 <View className="flex-row justify-between items-center mb-4">
                     <Text className="text-white text-2xl font-bold">Favorites</Text>
                     <TouchableOpacity>
-                        <Ionicons name="arrow-forward" size={20} color="#FF5E3E" />
+                        <Ionicons name="arrow-forward" size={20} color="#B71C1C" />
                     </TouchableOpacity>
                 </View>
                 
@@ -191,7 +191,7 @@ const ArchivesScreen = ({ navigation }: Props) => {
                      <Text className="text-white text-2xl font-bold">History</Text>
                      {/* Filter Icon */}
                      <TouchableOpacity>
-                        <Ionicons name="filter" size={20} color="#9CA3AF" />
+                        <Ionicons name="filter" size={20} color="#B71C1C" />
                      </TouchableOpacity>
                 </View>
 
