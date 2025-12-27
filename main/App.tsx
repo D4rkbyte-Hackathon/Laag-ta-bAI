@@ -30,7 +30,7 @@ import AIChatScreen from './app/screens/home/scan/AIChatScreen';
 
 // --- IMPORTS: Mastery ---
 import MasteryScreen from './app/screens/home/mastery/MasteryScreen';
-import AchievementDetail from './app/screens/home/mastery/AchievementDetail';
+import AchievementDetails from './app/screens/home/mastery/AchievementDetails';
 
 // --- IMPORTS: Profile ---
 import ProfileScreen from './app/screens/home/profile/ProfileScreen';
@@ -79,7 +79,7 @@ export default function App() {
           <Stack.Screen name="AIChat" component={AIChatScreen} options={{ headerShown: false }}/>
 
           {/* Mastery Details */}
-          <Stack.Screen name="AchievementDetail" component={AchievementDetail} options={{ headerShown: false }}/>
+          <Stack.Screen name="AchievementDetails" component={AchievementDetails} options={{ headerShown: false }}/>
 
         </Stack.Navigator>
       </NavigationContainer>

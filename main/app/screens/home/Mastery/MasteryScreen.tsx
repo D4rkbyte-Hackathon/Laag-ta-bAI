@@ -59,7 +59,7 @@ const ACHIEVEMENTS = [
 const MasteryScreen = ({ navigation }: Props) => {
   
   const handleBadgePress = (achievement: any) => {
-    navigation.navigate('AchievementDetail', { achievement });
+    navigation.navigate('AchievementDetails', { achievement });
   };
 
   return (
