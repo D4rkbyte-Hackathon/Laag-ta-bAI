@@ -13,6 +13,17 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 
+// 1. IMPORT Linear Gradient & cssInterop
+import { LinearGradient } from 'expo-linear-gradient';
+import { cssInterop } from 'nativewind';
+
+// 2. ENABLE className support for LinearGradient
+cssInterop(LinearGradient, {
+  className: {
+    target: 'style',
+  },
+});
+
 // --- Animated Components ---
 const AnimatedIcon = Animated.createAnimatedComponent(Ionicons);
 const AnimatedText = Animated.createAnimatedComponent(Text);
@@ -42,7 +53,6 @@ const TabItem = ({ route, isFocused, onPress, options, index }: any) => {
   useEffect(() => {
     if (isFocused) {
       scale.value = withSpring(1.2, { damping: 10, stiffness: 200 });
-      // UPDATED: Subtle shake based on your snippet (-5deg to 5deg)
       rotate.value = withSequence(
         withTiming(5, { duration: 100 }),
         withTiming(-5, { duration: 100 }),
@@ -93,7 +103,6 @@ const ScanButton = ({ onPress, isFocused }: any) => {
   const scale = useSharedValue(1);
 
   useEffect(() => {
-    // Keep breathing animation always active
     scale.value = withRepeat(
       withSequence(
         withTiming(1.05, { duration: 1000, easing: Easing.inOut(Easing.ease) }),
@@ -107,7 +116,6 @@ const ScanButton = ({ onPress, isFocused }: any) => {
     transform: [{ scale: scale.value }],
   }));
 
-  // NEW: Text animation logic for Scan button
   const textStyle = useAnimatedStyle(() => ({
     opacity: isFocused ? withTiming(1) : withTiming(0),
     transform: [{ translateY: isFocused ? withSpring(0) : withTiming(10) }],
@@ -117,7 +125,6 @@ const ScanButton = ({ onPress, isFocused }: any) => {
   return (
     <Pressable
       onPress={onPress}
-      // lower -mt-10 if needed para mo naog ang scan button
       className="items-center justify-center -mt-8"
       style={{ zIndex: 10 }}
     >
@@ -128,7 +135,6 @@ const ScanButton = ({ onPress, isFocused }: any) => {
         <MaterialCommunityIcons name="camera-outline" size={30} color="#2B0E0E" />
       </AnimatedView>
       
-      {/* NEW: Scan text now hides/shows like other tabs */}
       <AnimatedText 
         className="text-xs mt-1 text-text-light font-semibold"
         style={textStyle}
@@ -144,8 +150,11 @@ const ScreenNavbar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigat
   const insets = useSafeAreaInsets();
 
   return (
-    <View 
-      className="absolute bottom-0 left-0 right-0 flex-row bg-background-light items-center justify-around shadow-[0_-5px_10px_rgba(0,0,0,0.1)] border-t border-transparent rounded-t-[40px] z-50 elevation-5"
+    // 3. REPLACE View with LinearGradient
+    <LinearGradient 
+      colors={['#FFFDF4', '#D9D7CE']} // Your requested colors
+      // Removed 'bg-background-light'
+      className="absolute bottom-0 left-0 right-0 flex-row items-center justify-around shadow-[0_-5px_10px_rgba(0,0,0,0.1)] border-t border-transparent rounded-t-[40px] z-50 elevation-5"
       style={{ 
         paddingBottom: Math.max(insets.bottom, 20), 
         height: 70 + Math.max(insets.bottom, 20) 
@@ -182,7 +191,7 @@ const ScreenNavbar: React.FC<BottomTabBarProps> = ({ state, descriptors, navigat
           />
         );
       })}
-    </View>
+    </LinearGradient>
   );
 };
 

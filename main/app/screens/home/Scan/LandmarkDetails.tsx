@@ -50,7 +50,14 @@ const LandmarkDetails = ({ navigation }: Props) => {
           title="Landmark Details"
           onBack={() => navigation.goBack()}
           rightIcon="heart-outline"
-          onRightAction={() => navigation.navigate('MainTabs', { screen: 'Archives' })}
+          onRightAction={() => {
+            // 1. Clear the stack! 
+            // This closes the modal (and anything else) and goes back to the root (MainTabs)
+            navigation.popToTop(); 
+            // 2. Switch the tab
+            // Now that we are back at MainTabs, we just switch the active screen
+            navigation.navigate('MainTabs', { screen: 'Archives' });
+        }}
       />
 
       <SafeAreaView edges={['bottom']} className="flex-1">

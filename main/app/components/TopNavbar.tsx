@@ -3,6 +3,17 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+// 1. IMPORT Gradient & cssInterop
+import { LinearGradient } from 'expo-linear-gradient';
+import { cssInterop } from 'nativewind';
+
+// 2. ENABLE className support
+cssInterop(LinearGradient, {
+  className: {
+    target: 'style',
+  },
+});
+
 type Props = {
   title: string;
   onBack: () => void;
@@ -14,8 +25,11 @@ export const TopNavbar = ({ title, onBack, rightIcon, onRightAction }: Props) =>
   const insets = useSafeAreaInsets();
 
   return (
-    <View 
-      className="absolute top-0 left-0 right-0 flex-row bg-background-light items-center justify-between px-6 shadow-[0_5px_10px_rgba(0,0,0,0.1)] border-b border-transparent rounded-b-[40px] z-50 elevation-5"
+    // 3. REPLACE View with LinearGradient
+    <LinearGradient 
+      colors={['#D9D7CE', '#FFFDF4']} // Gradient from Light to slightly Darker Cream
+      // Removed 'bg-background-light'
+      className="absolute top-0 left-0 right-0 flex-row items-center justify-between px-6 shadow-[0_5px_10px_rgba(0,0,0,0.1)] border-b border-transparent rounded-b-[40px] z-50 elevation-5"
       style={{ 
         paddingTop: Math.max(insets.top, 20), 
         height: 60 + Math.max(insets.top, 20),
@@ -49,6 +63,6 @@ export const TopNavbar = ({ title, onBack, rightIcon, onRightAction }: Props) =>
             <View className="w-10 h-10" />
           )}
         </View>
-    </View>
+    </LinearGradient>
   );
 };

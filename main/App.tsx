@@ -1,8 +1,9 @@
 import './global.css';
 import React from 'react';
+import { GradientBackground } from './app/components/GradientBackground';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // --- IMPORTS: Components ---
@@ -24,7 +25,6 @@ import ArchivesScreen from './app/screens/home/archives/ArchivesScreen';
 
 // --- IMPORTS: Scan ---
 import ScanScreen from './app/screens/home/scan/ScanScreen';
-import IdentifyingModal from './app/screens/home/scan/IdentifyingModal'; //no need
 import LandmarkDetails from './app/screens/home/scan/LandmarkDetails';
 import AIChatScreen from './app/screens/home/scan/AIChatScreen';
 
@@ -35,23 +35,31 @@ import AchievementDetails from './app/screens/home/mastery/AchievementDetails';
 // --- IMPORTS: Profile ---
 import ProfileScreen from './app/screens/home/profile/ProfileScreen';
 
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+const Tab = createMaterialTopTabNavigator();
 
 // Create the Bottom Tab Navigator
 function MainTabs() {
   return (
-    <Tab.Navigator
-      tabBar={(props) => <ScreenNavbar {...props} />}
-      screenOptions={{ headerShown: false }}
-      initialRouteName="Explore"
-    >
-      <Tab.Screen name="Explore" component={ExploreScreen} />
-      <Tab.Screen name="Archives" component={ArchivesScreen} />
-      <Tab.Screen name="Scan" component={ScanScreen} />
-      <Tab.Screen name="Mastery" component={MasteryScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
-    </Tab.Navigator>
+<GradientBackground>
+      <Tab.Navigator
+        tabBarPosition="bottom"
+        tabBar={(props: any) => <ScreenNavbar {...props} />}
+        
+        screenOptions={{ 
+          swipeEnabled: true, // Enable the gesture
+          sceneStyle: { backgroundColor: 'transparent' },
+          tabBarStyle: { backgroundColor: 'transparent' },
+        }}
+        initialRouteName="Explore"
+      >
+        <Tab.Screen name="Explore" component={ExploreScreen} />
+        <Tab.Screen name="Archives" component={ArchivesScreen} />
+        <Tab.Screen name="Scan" component={ScanScreen} />
+        <Tab.Screen name="Mastery" component={MasteryScreen} />
+        <Tab.Screen name="Profile" component={ProfileScreen} />
+      </Tab.Navigator>
+    </GradientBackground>
   );
 }
 
@@ -59,27 +67,62 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Splash">
+        <Stack.Navigator 
+          initialRouteName="Splash"
+          screenOptions={{
+            headerShown: false,
+            animation: 'fade',
+            gestureEnabled: true,
+          }}
+        >
           
-          {/* Onboarding Flow */}
-          <Stack.Screen name="Splash" component={SplashScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="Onboarding" component={OnboardingCarousel} options={{ headerShown: false }} />
-          <Stack.Screen name="Permissions" component={PermissionsScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="Welcome" component={WelcomeScreen} options={{ headerShown: false }} />
+          {/* --- ONBOARDING FLOW --- */}
+          {/* Keep standard slide for linear progression */}
+          <Stack.Screen name="Splash" component={SplashScreen}/>
+          <Stack.Screen name="Onboarding" component={OnboardingCarousel}/> 
+          <Stack.Screen name="Permissions" component={PermissionsScreen}/>
+          <Stack.Screen name="Welcome" component={WelcomeScreen}/>
 
-          {/* Main "Home" Hub - This now loads the Tab Navigator */}
-          <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
+          {/* --- MAIN APP --- */}
+          {/* Fade when entering the main app so it feels like a new "chapter" */}
+          <Stack.Screen 
+            name="MainTabs" 
+            component={MainTabs} 
+            options={{ animation: 'fade', gestureEnabled: false }} 
+          />
           
-          {/* Sub-screens that should cover the tabs (Detailed Views) */}
-          <Stack.Screen name="FullMap" component={FullMapView} options={{ headerShown: false }}/>
-          <Stack.Screen name="TransitInfo" component={TransitInfo} options={{ headerShown: false }}/>
+          {/* --- MODALS & DETAILS --- */}
+          {/* These slide up from bottom to feel like "cards" you check and put away */}
+          
+          <Stack.Screen 
+            name="FullMap" 
+            component={FullMapView} 
+            options={{ animation: 'slide_from_bottom', presentation: 'modal', ...TransitionPresets.ModalSlideFromBottomIOS, gestureEnabled: true, gestureDirection: 'vertical',}}
+          />
+          <Stack.Screen 
+            name="TransitInfo" 
+            component={TransitInfo} 
+            options={{ animation: 'slide_from_bottom', presentation: 'modal', ...TransitionPresets.ModalSlideFromBottomIOS, gestureEnabled: true, gestureDirection: 'vertical',}}
+          />
 
           {/* Scan Flow Details */}
-          <Stack.Screen name="LandmarkDetails" component={LandmarkDetails} options={{ headerShown: false }}/>
-          <Stack.Screen name="AIChat" component={AIChatScreen} options={{ headerShown: false }}/>
+          <Stack.Screen 
+            name="LandmarkDetails" 
+            component={LandmarkDetails} 
+            options={{ animation: 'slide_from_bottom', presentation: 'modal', ...TransitionPresets.ModalSlideFromBottomIOS, gestureEnabled: true, gestureDirection: 'vertical',}}
+          />
+          <Stack.Screen 
+            name="AIChat" 
+            component={AIChatScreen} 
+            options={{ animation: 'slide_from_bottom', presentation: 'modal', ...TransitionPresets.ModalSlideFromBottomIOS, gestureEnabled: true, gestureDirection: 'vertical',}}
+          />
 
           {/* Mastery Details */}
-          <Stack.Screen name="AchievementDetails" component={AchievementDetails} options={{ headerShown: false }}/>
+          <Stack.Screen 
+            name="AchievementDetails" 
+            component={AchievementDetails} 
+            options={{ animation: 'slide_from_bottom', presentation: 'modal', ...TransitionPresets.ModalSlideFromBottomIOS, gestureEnabled: true, gestureDirection: 'vertical',}} 
+          />
 
         </Stack.Navigator>
       </NavigationContainer>
