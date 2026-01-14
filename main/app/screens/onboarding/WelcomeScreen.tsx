@@ -79,7 +79,7 @@ const WelcomeScreen = ({ navigation }: Props) => {
                   <View className="w-full aspect-square rounded-[40px] overflow-hidden border-4 border-white/20">
                        <Image 
                           // Replace pic of MCIA or pwede sad vid/gif sa diff places in cebu
-                          source={{ uri: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' }}
+                          source={require('../../../assets/onboarding/welcome.jpg')}
                           className="w-full h-full"
                           resizeMode="cover"
                       />
@@ -99,7 +99,7 @@ const WelcomeScreen = ({ navigation }: Props) => {
               className="px-6 w-full"
           >
               <View className="items-center mb-8">
-                  <Text className="text-primary-dark text-3xl font-extrabold mb-1 tracking-tight text-center">
+                  <Text className="text-light-green text-3xl font-extrabold mb-1 tracking-tight text-center">
                       Maayong pag abot!
                   </Text>
                   <Text className="text-white text-lg font-medium mb-4 tracking-widest opacity-90 uppercase">

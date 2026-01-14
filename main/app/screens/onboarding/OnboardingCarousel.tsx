@@ -10,8 +10,8 @@ import Animated, {
   Extrapolation,
   SharedValue,
   runOnJS,
-  FadeIn,   // <--- IMPORT DIRECTLY
-  FadeOut   // <--- IMPORT DIRECTLY
+  FadeIn, 
+  FadeOut
 } from 'react-native-reanimated';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { GradientBackground } from '../../components/GradientBackground';
@@ -27,29 +27,29 @@ const onboardingData = [
     id: 1,
     title: 'See Beyond the Surface',
     description: 'Don\'t just sightsee—sight-understand. Snap a photo of any landmark and watch history come alive with myths, facts, and stories.', 
-    // Photo Suggestion: A POV shot of someone scanning Magellan's Cross or a statue. (1:1 aspect ratio pic)
-    image: require('../../../assets/logo/Logo-Icon.png'),
+    // Photo Suggestion: A POV shot of someone scanning a landmark. (1:1 aspect ratio pic)
+    image: require('../../../assets/onboarding/onboard1.jpg'),
   },
   {
     id: 2,
     title: 'Your Pocket Local Buddy',
     description: 'Curious about a legend? Need a food spot? Chat with our AI guide who knows Cebu like a best friend—available 24/7 in any language.',
     // Photo Suggestion: A traveler looking happy while texting on their phone in a vibrant street. (1:1 aspect ratio pic)
-    image: require('../../../assets/logo/Logo-Icon.png'),
+    image: require('../../../assets/onboarding/onboard2.jpg'),
   },
   {
     id: 3,
     title: 'Arrive & Orient Instantly',
     description: 'Landing at MCIA? We turn arrival chaos into your first adventure. Get instant orientation and start your quests right from the airport.',
     // Photo Suggestion: The Mactan-Cebu International Airport interior (wooden arches) or a traveler with luggage. (1:1 aspect ratio pic)
-    image: require('../../../assets/logo/Logo-Icon.png'),
+    image: require('../../../assets/onboarding/onboard3.jpg'),
   },
   {
     id: 4,
     title: 'Master Cebu\'s Heritage',
     description: 'Unlock hidden gems and earn badges as you explore. Go beyond the usual tourist spots and become a true Heritage Master.',
     // Photo Suggestion: A "hidden gem" location or a collage of badges/achievements. (1:1 aspect ratio pic)
-    image: require('../../../assets/logo/Logo-Icon.png'),
+    image: require('../../../assets/onboarding/onboard4.jpg'),
   },
 ];
 
@@ -136,34 +136,43 @@ const OnboardingCarousel = ({ navigation }: Props) => {
   const renderItem = ({ item }: any) => {
     return (
       <View className="flex-1 items-center justify-center px-6">
+        {/* IMAGE CONTAINER */}
         <View className="w-full h-3/5 items-center justify-end mb-8">
-            <View className="shadow-lg shadow-black/50 w-full h-full">
+            {/* UPDATED STYLE: 
+               1. w-[85%] limits width so it doesn't touch edges
+               2. aspect-square forces it to be a perfect 1:1 box
+               3. rounded-[40px] gives it that super modern 'squircle' look
+               4. border-8 border-white/10 adds the premium glass border
+               5. overflow-hidden cuts the image to the border shape
+            */}
+            <View className="aspect-square rounded-[40px] border-8 border-white/10 shadow-2xl shadow-black overflow-hidden bg-white/5">
                 <Image 
                     source={item.image}
                     className="w-full h-full"
-                    resizeMode="contain"
+                    resizeMode="cover" // 'cover' fills the square perfectly
                 />
             </View>
         </View>
         
+        {/* TEXT CONTENT */}
         <View className="items-center h-1/5">
-            <Text className="text-white text-3xl font-bold text-center mb-4">
+            <Text className="text-light-green text-3xl font-bold text-center mb-4 tracking-wide">
             {item.title}
             </Text>
-            <Text className="text-gray-300 text-base text-center px-4 leading-6 opacity-80">
+            <Text className="text-gray-300 text-base text-center px-4 leading-6 opacity-80 font-medium">
             {item.description}
             </Text>
         </View>
       </View>
     );
   };
-
+  
   return (
     <GradientBackground>
       <SafeAreaView className="flex-1 justify-between">
         <View className="flex-row justify-end p-4 z-10">
           <TouchableOpacity onPress={handleSkip}>
-            <Text className="text-white text-base font-medium opacity-80">Skip</Text>
+            <Text className="text-white text-base font-medium opacity-50">Skip</Text>
           </TouchableOpacity>
         </View>
 
