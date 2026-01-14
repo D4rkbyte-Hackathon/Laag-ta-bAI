@@ -2,7 +2,7 @@ import './global.css';
 import React from 'react';
 import { GradientBackground } from './app/components/GradientBackground';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -35,7 +35,7 @@ import AchievementDetails from './app/screens/home/mastery/AchievementDetails';
 // --- IMPORTS: Profile ---
 import ProfileScreen from './app/screens/home/profile/ProfileScreen';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
 
 // Create the Bottom Tab Navigator
@@ -97,31 +97,31 @@ export default function App() {
           <Stack.Screen 
             name="FullMap" 
             component={FullMapView} 
-            options={{ animation: 'slide_from_bottom', presentation: 'transparentModal'}}
+            options={{ animation: 'slide_from_bottom', presentation: 'modal', ...TransitionPresets.ModalSlideFromBottomIOS, gestureEnabled: true, gestureDirection: 'vertical',}}
           />
           <Stack.Screen 
             name="TransitInfo" 
             component={TransitInfo} 
-            options={{ animation: 'slide_from_bottom', presentation: 'transparentModal'}}
+            options={{ animation: 'slide_from_bottom', presentation: 'modal', ...TransitionPresets.ModalSlideFromBottomIOS, gestureEnabled: true, gestureDirection: 'vertical',}}
           />
 
           {/* Scan Flow Details */}
           <Stack.Screen 
             name="LandmarkDetails" 
             component={LandmarkDetails} 
-            options={{ animation: 'slide_from_bottom', presentation: 'transparentModal'}}
+            options={{ animation: 'slide_from_bottom', presentation: 'modal', ...TransitionPresets.ModalSlideFromBottomIOS, gestureEnabled: true, gestureDirection: 'vertical',}}
           />
           <Stack.Screen 
             name="AIChat" 
             component={AIChatScreen} 
-            options={{ animation: 'slide_from_bottom', presentation: 'transparentModal'}}
+            options={{ animation: 'slide_from_bottom', presentation: 'modal', ...TransitionPresets.ModalSlideFromBottomIOS, gestureEnabled: true, gestureDirection: 'vertical',}}
           />
 
           {/* Mastery Details */}
           <Stack.Screen 
             name="AchievementDetails" 
             component={AchievementDetails} 
-            options={{ animation: 'slide_from_bottom', presentation: 'transparentModal'}} 
+            options={{ animation: 'slide_from_bottom', presentation: 'modal', ...TransitionPresets.ModalSlideFromBottomIOS, gestureEnabled: true, gestureDirection: 'vertical',}} 
           />
 
         </Stack.Navigator>

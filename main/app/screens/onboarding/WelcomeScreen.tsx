@@ -76,7 +76,7 @@ const WelcomeScreen = ({ navigation }: Props) => {
                   entering={FadeInUp.delay(200).duration(1000).springify()}
                   className="w-full items-center shadow-2xl shadow-black/50"
               >
-                  <View className="w-full aspect-square rounded-[40px] overflow-hidden border-4 border-white/20">
+                  <View className="w-full aspect-square rounded-[40px] overflow-hidden border-8 border-white/20">
                        <Image 
                           // Replace pic of MCIA or pwede sad vid/gif sa diff places in cebu
                           source={require('../../../assets/onboarding/welcome.jpg')}
