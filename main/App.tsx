@@ -3,7 +3,7 @@ import React from 'react';
 import { GradientBackground } from './app/components/GradientBackground';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // --- IMPORTS: Components ---
@@ -36,19 +36,20 @@ import AchievementDetails from './app/screens/home/mastery/AchievementDetails';
 import ProfileScreen from './app/screens/home/profile/ProfileScreen';
 
 const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialTopTabNavigator();
 
 // Create the Bottom Tab Navigator
 function MainTabs() {
   return (
 <GradientBackground>
       <Tab.Navigator
-        tabBar={(props) => <ScreenNavbar {...props} />}
+        tabBarPosition="bottom"
+        tabBar={(props: any) => <ScreenNavbar {...props} />}
         
         screenOptions={{ 
-          headerShown: false,
-          animation: 'shift', // Now the shift animation will look seamless
+          swipeEnabled: true, // Enable the gesture
           sceneStyle: { backgroundColor: 'transparent' },
+          tabBarStyle: { backgroundColor: 'transparent' },
         }}
         initialRouteName="Explore"
       >
