@@ -1,6 +1,7 @@
 import React from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { cssInterop } from 'nativewind';
+import { ImageBackground } from 'react-native';
 
 cssInterop(LinearGradient, {
   className: {
@@ -19,7 +20,13 @@ export const GradientBackground = ({ children, className }: Props) => {
       colors={['#2B0E0E', '#571717']} 
       className={`flex-1 ${className || ''}`}
     >
-      {children}
+      <ImageBackground
+        source={require('../../assets/others/main-bg.png')}
+        className="flex-1"
+        resizeMode="cover"
+      >
+        {children}
+      </ImageBackground>
     </LinearGradient>
   );
 };

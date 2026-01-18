@@ -15,6 +15,10 @@ import OnboardingCarousel from './app/screens/onboarding/OnboardingCarousel';
 import PermissionsScreen from './app/screens/onboarding/PermissionsScreen';
 import WelcomeScreen from './app/screens/onboarding/WelcomeScreen';
 
+// --- IMPORTS: Authentication ---
+import LoginScreen from './app/screens/authentication/LoginScreen';
+import RegisterScreen from './app/screens/authentication/RegisterScreen';
+
 // --- IMPORTS: Home / Explore ---
 import ExploreScreen from './app/screens/home/explore/ExploreScreen';
 import FullMapView from './app/screens/home/explore/FullMapView';
@@ -34,6 +38,7 @@ import AchievementDetails from './app/screens/home/mastery/AchievementDetails';
 
 // --- IMPORTS: Profile ---
 import ProfileScreen from './app/screens/home/profile/ProfileScreen';
+import { SlideInDown } from 'react-native-reanimated';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialTopTabNavigator();
@@ -80,6 +85,8 @@ export default function App() {
           {/* Keep standard slide for linear progression */}
           <Stack.Screen name="Splash" component={SplashScreen}/>
           <Stack.Screen name="Onboarding" component={OnboardingCarousel}/> 
+          <Stack.Screen name="Login" component={LoginScreen}/>
+          <Stack.Screen name="Register" component={RegisterScreen} options={{ animation: 'slide_from_bottom'}} />
           <Stack.Screen name="Permissions" component={PermissionsScreen}/>
           <Stack.Screen name="Welcome" component={WelcomeScreen}/>
 
