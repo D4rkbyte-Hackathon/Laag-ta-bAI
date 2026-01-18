@@ -17,7 +17,7 @@ const LoginScreen = ({ navigation }: Props) => {
 
   return (
     <ImageBackground 
-        source={require('../../../assets/onboarding/login.jpg')}
+        source={require('../../../assets/authentication/login.jpg')}
         className="flex-1"
         resizeMode="cover"
     >

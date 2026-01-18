@@ -18,7 +18,7 @@ const RegisterScreen = ({ navigation }: Props) => {
 
   return (
     <ImageBackground 
-        source={require('../../../assets/onboarding/register.jpg')}
+        source={require('../../../assets/authentication/register.jpg')}
         className="flex-1"
         resizeMode="cover"
     >

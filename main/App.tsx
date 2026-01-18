@@ -85,7 +85,7 @@ export default function App() {
           {/* Keep standard slide for linear progression */}
           <Stack.Screen name="Splash" component={SplashScreen}/>
           <Stack.Screen name="Onboarding" component={OnboardingCarousel}/> 
-          <Stack.Screen name="Login" component={LoginScreen} options={{ animation: 'slide_from_bottom'}}/>
+          <Stack.Screen name="Login" component={LoginScreen}/>
           <Stack.Screen name="Register" component={RegisterScreen} options={{ animation: 'slide_from_bottom'}} />
           <Stack.Screen name="Permissions" component={PermissionsScreen}/>
           <Stack.Screen name="Welcome" component={WelcomeScreen}/>
