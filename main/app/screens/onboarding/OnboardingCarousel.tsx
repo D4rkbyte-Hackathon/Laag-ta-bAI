@@ -113,14 +113,14 @@ const OnboardingCarousel = ({ navigation }: Props) => {
 
   const handleNext = () => {
     if (currentIndex === onboardingData.length - 1) {
-      navigation.replace('Permissions');
+      navigation.replace('Login');
     } else {
       ref.current?.next();
     }
   };
 
   const handleSkip = () => {
-    navigation.replace('Permissions');
+    navigation.replace('Login');
   };
 
   const buttonAnimatedStyle = useAnimatedStyle(() => {

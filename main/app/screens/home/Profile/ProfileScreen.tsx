@@ -37,7 +37,7 @@ const ProfileScreen = ({ navigation }: Props) => {
   };
 
   const handleLogout = () => {
-    Alert.alert("Logout", "You have been logged out (Demo).");
+    navigation.navigate('Login')
   };
 
   return (
