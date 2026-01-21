@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Dimensions, TextInput } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, ScrollView, TouchableOpacity, Dimensions, TextInput, Keyboard, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -13,35 +13,28 @@ type Props = {
 
 const { width } = Dimensions.get('window');
 
-// --- Mock Data ---
+// --- Mock Data (Updated for Dumlog -> Crocolandia) ---
 const TRANSPORT_MODES = [
   { 
-    id: 'jeepney', 
-    title: 'Modern Jeepney', 
-    fare: '₱15.00 min', 
-    icon: 'bus-outline', 
-    description: 'Air-conditioned, comfortable, and safer. Key routes: IT Park, Ayala, Carbon.' 
+    id: 'tricycle', 
+    title: 'Tricycle', 
+    fare: '₱20.00 / pax', 
+    icon: 'bicycle-outline', // Best proxy icon for Tricycle
+    description: 'The standard local commute. You can find them waiting near the Dumlog Barangay Hall or main intersections.' 
   },
   { 
-    id: 'trad-jeep', 
-    title: 'Traditional Jeepney', 
-    fare: '₱13.00 min', 
-    icon: 'car-sport-outline', 
-    description: 'The classic King of the Road. Open-air and goes almost everywhere.' 
+    id: 'ebike', 
+    title: 'E-Bike / E-Trike', 
+    fare: '₱15.00 min', 
+    icon: 'flash-outline', 
+    description: 'Cheaper and quieter. Good for short distance hops if you catch one passing by your street.' 
   },
   { 
     id: 'taxi', 
     title: 'Taxi / Grab', 
-    fare: 'Metered', 
+    fare: '₱180.00 - ₱220.00', 
     icon: 'car-outline', 
-    description: 'Private and convenient. Available 24/7 via apps or hailing.' 
-  },
-  { 
-    id: 'mybus', 
-    title: 'MyBus', 
-    fare: '₱25.00 - ₱50.00', 
-    icon: 'bus', 
-    description: 'Main bus line connecting Airport (MCIA) to SM City and Seaside.' 
+    description: 'Direct to gate. Highly recommended if you are bringing a group or kids, as the road to Crocolandia can be dusty.' 
   },
 ];
 
@@ -56,13 +49,13 @@ const COMMUTER_TIPS = [
     id: 2,
     title: 'Safety First',
     icon: 'shield-checkmark-outline',
-    content: 'Keep your bag in front of you and avoid wearing flashy jewelry when riding traditional jeepneys.'
+    content: 'Keep your bag in front of you and avoid wearing flashy jewelry when riding public transport.'
   },
   {
     id: 3,
-    title: 'Jeepney Etiquette',
-    icon: 'people-outline',
-    content: 'Always "misod" (scoot over) to make room for new passengers. It is the unspoken rule of the road.'
+    title: 'Ask the Price First',
+    icon: 'pricetag-outline',
+    content: 'For tricycles, always confirm the fare ("Pila plete?") before hopping in to avoid "special trip" charges.'
   },
   {
     id: 4,
@@ -73,6 +66,23 @@ const COMMUTER_TIPS = [
 ];
 
 const TransitInfo = ({ navigation }: Props) => {
+  // --- STAGING STATE ---
+  const [destination, setDestination] = useState('');
+  const [showRoutes, setShowRoutes] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleFindRoute = () => {
+    if (!destination.trim()) return;
+
+    Keyboard.dismiss();
+    setIsLoading(true);
+
+    // Simulate calculation delay
+    setTimeout(() => {
+        setIsLoading(false);
+        setShowRoutes(true);
+    }, 1500);
+  };
   
   // Render Tip Card with Margin for spacing
   const renderTip = ({ item }: { item: typeof COMMUTER_TIPS[0] }) => (
@@ -104,13 +114,14 @@ const TransitInfo = ({ navigation }: Props) => {
           showsVerticalScrollIndicator={false}
         >
           
-          {/* --- ROUTE FINDER (Restored) --- */}
+          {/* --- ROUTE FINDER --- */}
           <View className="px-6 mb-8">
             <View className="bg-white/10 border border-white/10 rounded-2xl p-4">
-                {/* From (Current Location) */}
+                {/* From (Starting Location) */}
                 <View className="flex-row items-center mb-4">
                     <Ionicons name="radio-button-on" size={20} color="#FFC107" />
-                    <Text className="text-white ml-3 font-medium">Your Current Location</Text>
+                    {/* UPDATED: Hardcoded to Dumlog as requested */}
+                    <Text className="text-white ml-3 font-medium">Dumlog, Talisay City</Text>
                 </View>
                 
                 {/* Connector Line */}
@@ -123,45 +134,61 @@ const TransitInfo = ({ navigation }: Props) => {
                         placeholder="Enter destination..."
                         placeholderTextColor="#9CA3AF"
                         className="flex-1 ml-3 text-white font-medium"
+                        value={destination}
+                        onChangeText={(text) => {
+                            setDestination(text);
+                            // Hide routes if user starts typing again
+                            if (showRoutes) setShowRoutes(false);
+                        }}
                     />
                 </View>
 
                 {/* Find Route Button */}
-                <TouchableOpacity className="mt-4 bg-primary-dark py-3 rounded-xl items-center shadow-lg">
-                    <Text className="text-background-dark font-bold text-base">Find Route</Text>
+                <TouchableOpacity 
+                    onPress={handleFindRoute}
+                    disabled={isLoading || !destination.trim()}
+                    className={`mt-4 py-3 rounded-xl items-center shadow-lg ${destination.trim() ? 'bg-primary-dark' : 'bg-accent'}`}
+                >
+                    {isLoading ? (
+                        <ActivityIndicator color="#2B0E0E" />
+                    ) : (
+                        <Text className="text-background-dark font-bold text-base">Find Route</Text>
+                    )}
                 </TouchableOpacity>
             </View>
           </View>
 
-          {/* --- MODES OF TRANSPORT --- */}
-          <View className="px-6 mb-8">
-            <Text className="text-white text-xl font-bold mb-4">Modes of Transport</Text>
-            
-            {TRANSPORT_MODES.map((mode) => (
-                <TouchableOpacity 
-                    key={mode.id}
-                    className="bg-white/10 border border-white/5 rounded-2xl p-4 mb-3 flex-row items-start"
-                    activeOpacity={0.7}
-                >
-                    <View className="bg-white/10 p-3 rounded-xl mr-4">
-                        <Ionicons name={mode.icon as any} size={24} color="#FFC107" />
-                    </View>
-                    <View className="flex-1">
-                        <View className="flex-row justify-between items-center mb-1">
-                            <Text className="text-white font-bold text-lg">{mode.title}</Text>
-                            <View className="bg-primary-dark/20 px-2 py-1 rounded-md">
-                                <Text className="text-primary-dark text-xs font-bold">{mode.fare}</Text>
-                            </View>
+          {/* --- MODES OF TRANSPORT (Conditionally Rendered) --- */}
+          {showRoutes && (
+              <View className="px-6 mb-8">
+                <Text className="text-white text-xl font-bold mb-4">Modes of Transport</Text>
+                
+                {TRANSPORT_MODES.map((mode) => (
+                    <TouchableOpacity 
+                        key={mode.id}
+                        className="bg-white/10 border border-white/5 rounded-2xl p-4 mb-3 flex-row items-start"
+                        activeOpacity={0.7}
+                    >
+                        <View className="bg-white/10 p-3 rounded-xl mr-4">
+                            <Ionicons name={mode.icon as any} size={24} color="#FFC107" />
                         </View>
-                        <Text className="text-gray-300 text-sm leading-5 opacity-80">
-                            {mode.description}
-                        </Text>
-                    </View>
-                </TouchableOpacity>
-            ))}
-          </View>
+                        <View className="flex-1">
+                            <View className="flex-row justify-between items-center mb-1">
+                                <Text className="text-white font-bold text-lg">{mode.title}</Text>
+                                <View className="bg-primary-dark/20 px-2 py-1 rounded-md">
+                                    <Text className="text-primary-dark text-xs font-bold">{mode.fare}</Text>
+                                </View>
+                            </View>
+                            <Text className="text-gray-300 text-sm leading-5 opacity-80">
+                                {mode.description}
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+                ))}
+              </View>
+          )}
 
-          {/* --- COMMUTER TIPS CAROUSEL (Moved to Bottom) --- */}
+          {/* --- COMMUTER TIPS CAROUSEL --- */}
           <View className="mb-4">
             <Text className="px-6 text-white text-xl font-bold mb-4">Daily Tips</Text>
             <Carousel
@@ -173,7 +200,6 @@ const TransitInfo = ({ navigation }: Props) => {
                 data={COMMUTER_TIPS}
                 scrollAnimationDuration={1000}
                 renderItem={renderTip}
-                // Mode config for nicer spacing effect
                 mode="parallax"
                 modeConfig={{
                     parallaxScrollingScale: 0.9,
