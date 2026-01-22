@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
+    "@react-native-masked-view/masked-view": "^0.3.2",
     "@react-navigation/bottom-tabs": "^7.9.0",
     "@react-navigation/material-top-tabs": "^7.4.12",
     "@react-navigation/native": "^7.1.25",

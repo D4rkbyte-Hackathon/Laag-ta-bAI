@@ -19,8 +19,6 @@ type Props = {
 const MILESTONES = [
     { id: 1, label: "Visited Fort San Pedro", completed: true },
     { id: 2, label: "Scanned Magellan's Cross", completed: true },
-    { id: 3, label: "Ate Puso (Hanging Rice)", completed: true },
-    { id: 4, label: "Completed 'Old Cebu' Quiz", completed: true },
 ];
 
 const AchievementDetails = ({ navigation }: Props) => {

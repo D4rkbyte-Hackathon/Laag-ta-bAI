@@ -18,14 +18,14 @@ const FAVORITE_ITEMS = [
     title: "Magellan's Cross", 
     category: 'Landmark', 
     rating: 4.8, 
-    image: PLACEHOLDER_IMG 
+    image: require('../../../../assets/placeholder/Magellan.jpg') 
   },
   { 
     id: 'f2', 
     title: 'Temple of Leah', 
     category: 'Attraction', 
     rating: 4.5, 
-    image: PLACEHOLDER_IMG 
+    image: require('../../../../assets/placeholder/Temple.jpg')
   },
 ];
 
@@ -36,7 +36,7 @@ const HISTORY_ITEMS = [
     category: 'Historical Site', 
     location: 'Cebu City', 
     rating: 4.7,
-    image: PLACEHOLDER_IMG,
+    image: require('../../../../assets/placeholder/Fort.jpg'),
     savedAt: '2 days ago'
   },
   { 
@@ -45,7 +45,7 @@ const HISTORY_ITEMS = [
     category: 'Ancestral House', 
     location: 'Parian, Cebu', 
     rating: 4.5,
-    image: PLACEHOLDER_IMG,
+    image: require('../../../../assets/placeholder/Yap.jpg'),
     savedAt: '1 week ago'
   },
   { 
@@ -54,7 +54,7 @@ const HISTORY_ITEMS = [
     category: 'Museum', 
     location: 'Cebu City', 
     rating: 4.6,
-    image: PLACEHOLDER_IMG,
+    image: require('../../../../assets/placeholder/Museo.jpg'),
     savedAt: '1 month ago'
   },
 ];
@@ -68,11 +68,11 @@ const FavoriteCard = ({ item, onPress }: { item: any, onPress: () => void }) => 
     activeOpacity={0.8}
     className="mr-4 w-40 bg-white/10 border border-white/5 rounded-2xl p-3"
   >
-    <View className="w-full h-32 rounded-xl mb-3 bg-white/5 p-4 items-center justify-center relative">
+    <View className="w-full h-32 rounded-xl mb-3 bg-white/5 p-1 items-center justify-center relative">
         <Image 
             source={item.image}
-            className="w-full h-full"
-            resizeMode="contain"
+            className="w-full h-full rounded-xl"
+            resizeMode="cover"
         />
         <View className="absolute top-2 right-2 bg-background-dark/60 p-1.5 rounded-full">
             <Ionicons name="heart" size={14} color="#FF5E3E" />
@@ -97,11 +97,11 @@ const HistoryItemCard = ({ item, onPress }: { item: any, onPress: () => void }) 
     className="flex-row bg-white/5 border border-white/5 rounded-2xl p-3 mb-3 items-center"
   >
     {/* Image Thumbnail */}
-    <View className="w-20 h-20 rounded-xl mr-4 bg-white/5 p-2 items-center justify-center">
+    <View className="w-20 h-20 rounded-xl mr-4 bg-white/5 p-1 items-center justify-center">
        <Image 
            source={item.image}
-           className="w-full h-full"
-           resizeMode="contain"
+           className="w-full h-full rounded-xl"
+           resizeMode="cover"
        />
     </View>
 

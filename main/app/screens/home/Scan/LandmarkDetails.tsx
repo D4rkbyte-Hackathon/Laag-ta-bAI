@@ -6,6 +6,8 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useRoute, RouteProp } from '@react-navigation/native';
 import { GradientBackground } from '../../../components/GradientBackground';
 import { TopNavbar } from '../../../components/TopNavbar';
+import { LinearGradient } from 'expo-linear-gradient';
+import MaskedView from '@react-native-masked-view/masked-view';
 
 type RootStackParamList = {
   LandmarkDetails: { landmarkId: string; title: string };
@@ -22,7 +24,7 @@ const MOCK_DATA = {
   title: "Magellan's Cross",
   location: "Cebu City, Philippines",
   rating: 4.8,
-  image: require('../../../../assets/logo/Logo-Icon.png'),
+  image: require('../../../../assets/placeholder/Magellan.jpg'),
   sections: {
     about: "Magellan's Cross is a Christian cross planted by Portuguese and Spanish explorers as ordered by Ferdinand Magellan upon arriving in Cebu in the Philippines on April 21, 1521.",
     significance: "This site is a symbol of the birth of Christianity in the land. It houses the original cross inside a tindalo wood case to protect it from people who chipped away parts of it in the belief that it had miraculous powers.",
@@ -63,14 +65,23 @@ const LandmarkDetails = ({ navigation }: Props) => {
       <SafeAreaView edges={['bottom']} className="flex-1">
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 40 }}>
             
-            {/* --- HERO IMAGE (Increased Height to h-96) --- */}
-            <View className="w-full h-96 bg-black/20 relative mb-6">
-                <Image 
-                    source={MOCK_DATA.image}
-                    className="w-full h-full opacity-80"
-                    resizeMode="contain"
+            <View className="w-full h-[500px] mb-6">
+                <MaskedView
+                    style={{ flex: 1 }}
+                    maskElement={
+                    <LinearGradient
+                        colors={['black', 'black', 'transparent']}
+                        locations={[0, 0.8, 1]}
+                        style={{ flex: 1 }}
+                    />
+                    }
+                >
+                <Image
+                source={MOCK_DATA.image}
+                style={{ width: '100%', height: '100%' }}
+                resizeMode="cover"
                 />
-                <View className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background-dark to-transparent" />
+            </MaskedView>
             </View>
 
             {/* --- TITLE & INFO --- */}

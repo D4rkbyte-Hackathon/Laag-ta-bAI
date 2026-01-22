@@ -113,7 +113,7 @@ const OnboardingCarousel = ({ navigation }: Props) => {
 
   const handleNext = () => {
     if (currentIndex === onboardingData.length - 1) {
-      navigation.replace('Login');
+      navigation.replace('Permissions');
     } else {
       ref.current?.next();
     }
